@@ -1,17 +1,34 @@
 package shubham.tfin;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
+
+    ListView lView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        lView = (ListView) findViewById(R.id.lView);
+        ArrayList<ListItem> al = new ArrayList<ListItem>();
+        for(int i=0;i<4;i++)
+        {
+            ListItem lm = new ListItem();
+            lm.dishName = "TFin Dish Name";
+            lm.rate = 200.9;
+            lm.img = R.mipmap.ic_launcher;
+            al.add(lm);
+        }
+        lView.setAdapter(new ListAdapter(al,this));
     }
 
 

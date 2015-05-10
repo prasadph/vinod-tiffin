@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">Tfin</string>
+    <string name="app_name">TFin</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string-array name="titles">
+        <item>Goan Thali</item>
+        <item>Maharathrian Thali</item>
+        <item>South Indian Thali</item>
+        <item>Rajashani Thali</item>
+    </string-array>
 </resources>

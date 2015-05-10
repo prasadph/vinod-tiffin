@@ -1,36 +1,69 @@
 package shubham.tfin;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
+    Toolbar toolbar;
     ListView lView;
+    private FoodClassAdapter adapter;
+    private RecyclerView recyclerView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lView = (ListView) findViewById(R.id.lView);
-        ArrayList<ListItem> al = new ArrayList<ListItem>();
-        for(int i=0;i<4;i++)
-        {
-            ListItem lm = new ListItem();
-            lm.dishName = "TFin Dish Name";
-            lm.rate = 200.9;
-            lm.img = R.mipmap.ic_launcher;
-            al.add(lm);
-        }
-        lView.setAdapter(new ListAdapter(al,this));
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+
+        recyclerView = (RecyclerView) findViewById(R.id.foodList);
+        adapter = new FoodClassAdapter(this, getData());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+//        lView = (ListView) findViewById(R.id.lView);
+//        ArrayList<ListItem> al = new ArrayList<ListItem>();
+//        for(int i=0;i<4;i++)
+//        {
+//            ListItem lm = new ListItem();
+//            lm.dishName = "TFin Dish Name";
+//            lm.rate = 200.9;
+//            lm.img = R.mipmap.ic_launcher;
+//            al.add(lm);
+//        }
+//        lView.setAdapter(new ListAdapter(al,this));
     }
 
+    private List<FoodListData> getData(){
+        List<FoodListData> list = new ArrayList<>();
+        int[] icons = {R.drawable.goa100x100, R.drawable.maharas100x100, R.drawable.south100x100, R.drawable.rajasthani100x100};
+        String[] titles = getResources().getStringArray(R.array.titles);
+        double[] rates = {100.0, 200.0, 249.0, 200.0};
+
+        for(int i = 0; i< 24; i++)
+        {
+            FoodListData data = new FoodListData();
+            data.FImgID = icons[i%4];
+            data.FTitle = titles[i%4];
+            data.FPrice = rates[i%4];
+            list.add(data);
+        }
+        return list;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

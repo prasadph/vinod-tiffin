@@ -1,12 +1,17 @@
 package shubham.tfin;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,11 +21,13 @@ import java.util.List;
  */
 public class FoodClassAdapter extends RecyclerView.Adapter<FoodClassAdapter.MyViewHolder> {
     private LayoutInflater inflator;
+    Context context;
     List<FoodListData> list = Collections.emptyList();
 
     public FoodClassAdapter(Context context, List<FoodListData> dataList) {
         inflator = LayoutInflater.from(context);
         list = dataList;
+        this.context = context;
     }
 
     @Override
@@ -30,17 +37,53 @@ public class FoodClassAdapter extends RecyclerView.Adapter<FoodClassAdapter.MyVi
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         FoodListData curr = list.get(position);
         holder.title.setText(curr.FTitle);
         holder.img.setImageResource(curr.FImgID);
         holder.rate.setText("\u20B9" + curr.FPrice);
+        holder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagePreview preview = new ImagePreview(context);
+                switch (position%4)
+                {
+                    case 0:
+                        ((ImageView)preview.findViewById(R.id.idPreviewImage)).setImageResource(R.drawable.goa256);
+                        preview.show();
+                        break;
+                    case 1:
+                        ((ImageView)preview.findViewById(R.id.idPreviewImage)).setImageResource(R.drawable.maharas256);
+                        preview.show();
+                        break;
+                    case 2:
+                        ((ImageView)preview.findViewById(R.id.idPreviewImage)).setImageResource(R.drawable.south256);
+                        preview.show();
+                        break;
+                    case 3:
+                        ((ImageView)preview.findViewById(R.id.idPreviewImage)).setImageResource(R.drawable.rajasthani256);
+                        preview.show();
+                        break;
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
+//    @Override
+//    public void onClick(View view) {
+//        switch (view.getId())
+//        {
+//            case R.id.idFoodImg:
+//                ImagePreview preview = new ImagePreview(context);
+//
+//                preview.show();
+//        }
+//    }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView title;

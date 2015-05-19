@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,9 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity {
 
     Toolbar toolbar;
-    ListView lView;
     private FoodClassAdapter adapter;
     private RecyclerView recyclerView;
-
+    TextView total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,10 @@ public class MainActivity extends ActionBarActivity {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
+        total = (TextView) findViewById(R.id.idTotal);
+
         recyclerView = (RecyclerView) findViewById(R.id.foodList);
-        adapter = new FoodClassAdapter(this, getData());
+        adapter = new FoodClassAdapter(this, getData(), total);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

@@ -18,12 +18,17 @@ import java.util.List;
 public class FoodClassAdapter extends RecyclerView.Adapter<FoodClassAdapter.MyViewHolder> {
     private LayoutInflater inflator;
     Context context;
+    TextView tvTotal;
+    int total = 0;
     List<FoodListData> list = Collections.emptyList();
 
-    public FoodClassAdapter(Context context, List<FoodListData> dataList) {
+    public FoodClassAdapter(Context context, List<FoodListData> dataList, TextView tv) {
         inflator = LayoutInflater.from(context);
         list = dataList;
         this.context = context;
+        tvTotal = tv;
+        total = 0;
+        tvTotal.setText("\u20B9" + total);
     }
 
     @Override
@@ -70,14 +75,20 @@ public class FoodClassAdapter extends RecyclerView.Adapter<FoodClassAdapter.MyVi
             public void onClick(View view) {
                 curr.FQuantity++;
                 holder.quant.setText(String.valueOf(curr.FQuantity));
+                total += curr.FPrice;
+                tvTotal.setText("\u20B9" + total);
             }
         });
 
         holder.sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                curr.FQuantity--;
-                holder.quant.setText(String.valueOf(curr.FQuantity));
+                if(curr.FQuantity > 0) {
+                    curr.FQuantity--;
+                    holder.quant.setText(String.valueOf(curr.FQuantity));
+                    total -= curr.FPrice;
+                    tvTotal.setText("\u20B9" + total);
+                }
             }
         });
     }
@@ -113,6 +124,7 @@ public class FoodClassAdapter extends RecyclerView.Adapter<FoodClassAdapter.MyVi
             quant = (TextView) itemView.findViewById(R.id.idQuant);
             add = (ImageButton) itemView.findViewById(R.id.idAddItem);
             sub = (ImageButton) itemView.findViewById(R.id.idSubItem);
+
         }
     }
 }

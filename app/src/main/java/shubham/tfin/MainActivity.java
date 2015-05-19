@@ -1,7 +1,5 @@
 package shubham.tfin;
 
-import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,12 +52,13 @@ public class MainActivity extends ActionBarActivity {
         String[] titles = getResources().getStringArray(R.array.titles);
         double[] rates = {100.0, 200.0, 249.0, 200.0};
 
-        for(int i = 0; i< 24; i++)
+        for(int i = 0; i< 14; i++)
         {
             FoodListData data = new FoodListData();
             data.FImgID = icons[i%4];
             data.FTitle = titles[i%4];
             data.FPrice = rates[i%4];
+            data.FQuantity = 0;
             list.add(data);
         }
         return list;

@@ -7,5 +7,5 @@ public class FoodListData {
     int FImgID;
     String FTitle;
     double FPrice;
-    String FDescr;
+    int FQuantity;
 }

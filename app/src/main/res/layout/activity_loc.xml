@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground">
+    <include
+        android:id="@+id/app_barL"
+        layout="@layout/app_bar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:text="Please choose your Location"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:id="@+id/idChooseLocTxt"
+        android:layout_below="@id/app_barL"
+        android:layout_marginTop="25dp"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/idLocList"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:layout_below="@id/idChooseLocTxt"
+        android:layout_marginTop="25dp"></Spinner>
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        layout="@layout/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/primaryColor">
+        <ImageButton
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/idbtnGoL"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/go1"
+            android:layout_marginRight="5dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

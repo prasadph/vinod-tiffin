@@ -9,4 +9,21 @@
         <item>South Indian Thali</item>
         <item>Rajashani Thali</item>
     </string-array>
+    <string-array name="loc">
+        <item>Calangute</item>
+        <item>Baga</item>
+        <item>Cavelossim</item>
+        <item>Panaji</item>
+        <item>Colva</item>
+        <item>Benaulim</item>
+        <item>Candolim</item>
+        <item>Old Goa</item>
+        <item>Margao</item>
+        <item>Anjuna</item>
+        <item>Vasco da Gama</item>
+        <item>Varca</item>
+        <item>Canacona</item>
+        <item>Dona Paula</item>
+        <item>Arpora</item>
+    </string-array>
 </resources>
